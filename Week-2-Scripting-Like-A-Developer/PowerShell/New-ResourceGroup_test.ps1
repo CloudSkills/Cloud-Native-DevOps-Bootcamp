@@ -5,11 +5,11 @@ Describe "New-ResourceGroup" {
     $location = 'eastus2'
     $name = 'cloudskillsbootcamp'
 
-    It "Name should be youtube92" {
+    It "Name should be cloudskillsbootcamp" {
         $name | Should Be 'cloudskillsbootcamp'
     }
 
-    It "location should be eastus" {
+    It "location should be eastus2" {
         $location | Should Be 'eastus2'
     }
 }
