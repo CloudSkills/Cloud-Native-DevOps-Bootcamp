@@ -1,3 +1,6 @@
+# To run the test:
+# Invoke-Pester .\New-ResourceGroup_test.ps1
+
 Describe "New-ResourceGroup" {
     $location = 'eastus2'
     $name = 'cloudskillsbootcamp'
