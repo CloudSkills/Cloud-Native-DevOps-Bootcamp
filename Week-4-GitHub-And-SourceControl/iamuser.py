@@ -1,14 +1,15 @@
 import boto3
 import os
+import sys
 
-def new_iam_user():
+def new_iam_user(username):
     # Create connection to AWS API
     iam_user = boto3.client('iam')
 
     try:
         # Try to create a new user
         new_user_create = iam_user.create_user(
-            UserName='cloudskills'
+            UserName=username
         )
         print(new_user_create)
 
@@ -20,7 +21,7 @@ def new_iam_user():
     try:
         # For the user that you just created, this will give them programmatic access for AWS CLI
         new_user_access = iam_user.create_access_key(
-            UserName='cloudskills'
+            UserName=username
         )
 
         print(new_user_access)
@@ -29,6 +30,7 @@ def new_iam_user():
         print(
             'Users access key was not created. Please confirm you have permissions to utilize programmatic access in AWS and try again')
 
+username = sys.argv[1]
 
 if __name__ == '__main__':
-    new_iam_user()
+    new_iam_user(username)
