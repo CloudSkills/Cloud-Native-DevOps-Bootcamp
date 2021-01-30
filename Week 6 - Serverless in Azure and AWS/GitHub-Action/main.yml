@@ -1,0 +1,48 @@
+on: workflow_dispatch
+
+env:
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  NODE_VERSION: '12.x'                # set this to the node version to use
+  RESOURCE_GROUP_NAME: 'AZ-400'
+  APP_SERVICE_PLAN: 'cloudskillsjsplan'
+  APP_SERVICE: 'cloudskillsjs'
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+        
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.13.0'
+
+    - name: npm install, build, and test
+      run: |
+        npm install
+        npm run build --if-present
+        npm run test --if-present
+    
+    - name: Azure Login
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Create Azure App Service Plan
+      uses: Azure/cli@1.0.4
+      with:
+        inlineScript: az appservice plan create -g ${{ env.RESOURCE_GROUP_NAME }} -n ${{ env.APP_SERVICE_PLAN }} --is-linux
+      
+    - name: Create Azure App Service
+      uses: Azure/cli@1.0.4
+      with:
+        inlineScript: az webapp create -g ${{ env.RESOURCE_GROUP_NAME }} -p ${{ env.APP_SERVICE_PLAN }} -n ${{ env.APP_SERVICE }} --runtime "NODE|12-lts"
+        
+    - name: 'Deploy to Azure WebApp'
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.APP_SERVICE }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
