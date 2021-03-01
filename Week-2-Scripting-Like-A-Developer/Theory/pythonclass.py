@@ -3,7 +3,7 @@ class Dog:
         self.breed = breed
         self.age = age
 
-dogsbreed = Dog("bulldog", 1)
+dogs = Dog("bulldog", 1)
 
-print(dogsbreed.breed)
-print(dogsbreed.age)
+print(dogs.breed)
+# print(dogs.age)

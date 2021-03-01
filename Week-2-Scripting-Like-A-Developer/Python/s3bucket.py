@@ -1,6 +1,7 @@
 import sys
 import boto3
 
+
 try:
     def main():
         create_s3bucket(bucket_name)
@@ -24,4 +25,3 @@ bucket_name = sys.argv[1]
 
 if __name__ == '__main__':
     main()
-    

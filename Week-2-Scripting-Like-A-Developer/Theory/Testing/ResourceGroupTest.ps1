@@ -3,7 +3,7 @@ Describe "New-ResourceGroup" {
     $name = 'cloudskillsbootcamp'
 
     It "Name should be cloudskillsbootcamp" {
-        $name | Should Be 'cloudskillsbootcamp'
+        $name | Should Be 'cloudskillsboot'
     }
 
     It "location should be eastus2" {
