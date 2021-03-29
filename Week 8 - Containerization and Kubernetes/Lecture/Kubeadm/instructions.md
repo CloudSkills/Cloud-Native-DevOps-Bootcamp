@@ -114,7 +114,8 @@ sudo systemctl restart kubelet
 ```
 
 11. Initialize Kubeadm
-# Class A CIDR range
+
+Class A CIDR range
 
 ```
 sudo kubeadm init --apiserver-advertise-address 172.16.2.4 --pod-network-cidr=172.16.0.0/16
