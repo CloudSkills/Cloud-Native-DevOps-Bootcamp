@@ -38,13 +38,14 @@ cat <<EOF | sudo tee /etc/docker/daemon.json
   "storage-driver": "overlay2"
 }
 EOF
+```
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
 
-4. Install and Configure containerd
+5. Install and Configure containerd
 
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
