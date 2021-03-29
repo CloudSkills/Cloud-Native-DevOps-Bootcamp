@@ -115,7 +115,8 @@ sudo systemctl restart kubelet
 
 11. Initialize Kubeadm
 
-Class A CIDR range
+Depending on your network, the CIDR range is going to change. In Azure, I'm using a Class A CIDR range, which is why you see `172.16.x.x` below. Ensure you set up your addresses for `kubeadm init` based on the CIDR range in your network.
+
 
 ```
 sudo kubeadm init --apiserver-advertise-address 172.16.2.4 --pod-network-cidr=172.16.0.0/16
