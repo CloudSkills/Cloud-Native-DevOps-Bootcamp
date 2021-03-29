@@ -23,6 +23,7 @@ sudo apt install docker.io -y
 sudo systemctl enable docker
 sudo systemctl start docker
 systemctl status docker
+```
 
 4. Configure the Docker daemon to use `systemd` for `cgroups`
 
@@ -124,5 +125,3 @@ sudo kubeadm init --apiserver-advertise-address 172.16.2.4 --pod-network-cidr=17
 export kubever=$(kubectl version | base64 | tr -d '\n')
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
 ```
-
-kubeadm join 172.16.2.4:6443 --token yv0qdk.x03q1y3scg1z2a48 --discovery-token-ca-cert-hash sha256:aef0e7ce14cdf747ad695e2699c560de2b3e2a3a74568099dc49c75341635307
