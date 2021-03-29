@@ -80,47 +80,47 @@ sudo vim /etc/containerd/config.toml
 
 Find the `systemd_cgroup = false` and set it to `true`
 
-4. Install packages needed for the Kubernetes repo
+6. Install packages needed for the Kubernetes repo
 
 ```
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
-5. Update
+7. Update
 
 ```
 sudo apt update -y
 ```
 
-6. Install Kubeadm, kubelet, and kubectl
+8. Install Kubeadm, kubelet, and kubectl
 
 ```
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
-7. Disable swapping on Ubuntu as Kubernetes is not compatible with it. Swap is memory stored in HD
+9. Disable swapping on Ubuntu as Kubernetes is not compatible with it. Swap is memory stored in HD
 
 ```
 swapoff -a
 ```
 
-8. Reload Daemon
+10. Reload Daemon
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl restart kubelet
 ```
 
-8. Initialize Kubeadm
+11. Initialize Kubeadm
 # Class A CIDR range
 
 ```
 sudo kubeadm init --apiserver-advertise-address 172.16.2.4 --pod-network-cidr=172.16.0.0/16
 ```
 
-8. Set up the networking for the Kubernetes cluster (https://kubernetes.io/docs/concepts/cluster-administration/networking/)
+12. Set up the networking for the Kubernetes cluster (https://kubernetes.io/docs/concepts/cluster-administration/networking/)
 
 ```
 export kubever=$(kubectl version | base64 | tr -d '\n')
