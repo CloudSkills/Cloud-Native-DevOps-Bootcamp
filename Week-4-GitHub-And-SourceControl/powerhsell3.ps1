@@ -1,0 +1,1 @@
+az group create -l eastus1 -n test
