@@ -31,6 +31,6 @@ def new_iam_user(username):
             'Users access key was not created. Please confirm you have permissions to utilize programmatic access in AWS and try again')
 
 username = sys.argv[1]
-
+# Checking SomaDevops
 if __name__ == '__main__':
     new_iam_user(username)
